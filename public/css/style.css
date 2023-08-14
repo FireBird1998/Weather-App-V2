@@ -177,3 +177,207 @@ height: 1em;
 width: 1em;
 overflow: hidden;
 }
+
+/*
+================= 
+REUSED STYLE 
+=================
+*/
+
+.container{
+  max-width: 1600px;
+  width: 100%;
+  margin-inline: auto;
+  padding: 16px;
+}
+
+.icon-btn{
+  background-color: var(--white-alpha-8);
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-circle);
+}
+
+/*
+ has-state class has detailed explanation in the SylesExplanation.md File. 
+ all the psudo Class are also explained. 
+*/
+
+.has-state{ position: relative; }
+
+.has-state:hover{ box-shadow: var(--shadow-1); }
+
+.has-state:is(:focus, :focus-visible) { box-shadow: none; }
+
+.has-state::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  clip-path: circle(100% at 50% 50%);
+  transition: var(--transition-short);
+}
+
+.has-state:hover::before{
+  background-color: var(--white-alpha-4);
+}
+
+
+.has-state:is(:focus, :focus-visible)::before{
+  background-color: var(--white-alpha-8);
+  animation: ripple 250ms ease forwards;
+}
+
+@keyframes ripple {
+  0% { clip-path: circle(0% at 50% 50%); }
+  100% { clip-path: circle(100% at 50% 50% );}
+}
+
+/* ========================================================== */
+
+.btn-primary{
+  background-color: var(--primary);
+  color: var(--on-primary);
+  height: 48px;
+  line-height: 48px;
+  max-width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-inline: 16px;
+  border-radius: var(--radius-pill);
+}
+
+.btn-primary .span { font-weight: var(--weight-semiBold); }
+
+.btn-primary[disabled] {
+  background-color: var(--outline);
+  color: var(--on-surface-variant);
+  cursor: not-allowed;
+}
+
+.btn-primary[disabled]::before { display: none; }
+
+/* 
+================
+    HEADER 
+================
+*/
+
+.search-view,
+.header .btn-primary .span{ display: none; }
+
+.logo img { width: 150px; }
+
+.header .container,
+.header-action {
+  display: flex;
+  align-items: center;
+}
+
+.header .container { justify-content: space-between; }
+
+.header-action { gap: 16px; }
+
+.header .btn-primary { padding-inline: 12px; }
+
+.search-view{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100svh; /*for mobile browser*/
+  background-color: var(--surface);
+  color: var(--on-surface);
+  clip-path: circle(4% at calc(100% - 102px) 5%);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 4;
+  transition: clip-path 500ms ease;
+}
+
+.search-view.active{
+  opacity: 1;
+  visibility: visible;
+  clip-path: circle(130% at 73% 5%);
+  display: block;
+}
+
+.search-wrapper{
+  position: relative;
+  border-block-end: 1px solid var(--outline);
+}
+
+.search-wrapper::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--on-surface);
+  border-block-start-color: transparent;
+  border-radius: var(--radius-circle);
+  animation: loading 500ms linear infinite;
+  display: none;
+}
+
+@keyframes loading {
+  0% { transform: translateY(-50%) rotate(0); }
+  100% { transform: translateY(-50%) rotate(1turn); }
+}
+
+.search-wrapper:has(.searching)::before { display: block; }
+
+.search-field {
+  height: 80px;
+  line-height: 80px;
+  padding-inline: 56px 16px;
+  outline: none; 
+}
+
+.search-field::placeholder { color: var(--on-surface-variant-2); }
+
+.search-field::-webkit-search-cancel-button { display: none; }
+
+.search-wrapper .leading-icon { 
+  position: absolute;
+  top: 50%;
+  left: 28px;
+  transform: translate(-50%, -50%);
+}
+
+/*The greater-than symbol (>) is a child combinator in CSS. It specifies that the subsequent element must be a direct child of the preceding element. In this case, it means that the next element should be a direct child of an element with the class search-wrapper.*/
+
+.search-wrapper > .m-icon { display: none; }
+
+.search-wrapper .icon-btn {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.search-view .view-list { padding-block: 8px 16px; }
+
+.search-view .view-item {
+  position: relative;
+  height: 56px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  padding-inline: 16px 24px;
+}
+
+.search-view .view-item :is(.m-icon, .item-subtitle) {
+  color: var(--on-surface-variant);
+}
+
+.search-view .view-item .item-link {
+  position: absolute;
+  inset: 0;
+  box-shadow: none;
+}

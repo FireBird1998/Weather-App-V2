@@ -24,27 +24,68 @@
     <!-- Custome JS Link -->
     <script type="module" src="public/js/main.js"></script>
     <script type="module" src="public/js/route.js"></script>
+
   </head>
   <body>
     <!-- Header -->
     <header class="header">
       <div class="container">
-        
+    
+        <!-- Logo section -->
         <a href="#" class="logo">
           <img src="public/images/logo.png" alt="logo" width="364" height="58">
         </a>
-
+    
+        <!-- Search view section -->
         <div class="search-view" data-search-view>
-
+    
+          <!-- Search input wrapper -->
           <div class="search-wrapper">
+            <!-- Search input field -->
             <input type="search" name="search" placeholder="Search city..." class="search-field" autocomplete="off" data-search-field>
+            <!-- Search icon -->
             <span class="m-icon">search</span>
+            <!-- Search toggler button -->
+            <button class="icon-btn leading-icon has-state" aria-label="close search" data-search-toggler>
+              <span class="m-icon">arrow_back</span>
+            </button>
           </div>
-          
+    
+          <!-- Search result section -->
+          <div class="search-result" data-search-result>
+            <!-- List of search result items -->
+            <ul class="view-list" data-search-list>
+              <li class="view-item">
+                <!-- Location icon -->
+                <span class="m-icon">location_on</span>
+    
+                <!-- Location information -->
+                <div>
+                  <p class="item-title">Kolkata</p>
+                  <p class="label-2 item-subtitle">State of West Bengal, IN</p>
+                </div>
+                <!-- Link to toggle search -->
+                <a href="#" class="item-link has-state" data-search-toggle></a>
+              </li>
+            </ul>
+          </div>
         </div>
-
+    
+        <!-- Header action section -->
+        <div class="header-action">
+          <!-- Search toggler button -->
+          <button class="icon-btn has-state" aria-label="open search" data-search-toggler>
+            <span class="m-icon">search</span>
+          </button>
+          <!-- Current location button -->
+          <a href="#/current-location" class="btn-primary has-state" data-current-location-btn >
+            <span class="m-icon">my_location</span>
+            <span class="span">Current Location</span>
+          </a>
+        </div>
       </div>
     </header>
+    
 
 
     
