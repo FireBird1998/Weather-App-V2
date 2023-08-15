@@ -260,6 +260,54 @@ REUSED STYLE
 
 .btn-primary[disabled]::before { display: none; }
 
+/* Main styles */
+
+.card{
+  background-color: var(--surface);
+  color: var(--on-surface);
+}
+
+.card-lg {
+  border-radius: var(--radius-28);
+  padding: 20px;
+}
+
+.card-sm {
+  border-radius: var(--radius-16);
+  padding: 16px;
+}
+
+.heading {
+  color: var(--white);
+  font-size: var(--heading);
+  line-height: 1.1;
+}
+
+.title-1 { font-size: var(--title-1); }
+
+.title-2 { 
+  font-size: var(--title-2);
+  margin-block-end: 12px;
+}
+
+.title-3 { 
+  font-size: var(--title-3);
+  font-weight: var(--weight-semiBold);
+}
+
+.body-1 { font-size: var(--body-1); }
+
+.body-2 { 
+  font-size: var(--body-2);
+  font-weight: var(--weight-semiBold);
+}
+
+.body-3 { font-size: var(--body-3); }
+
+.label-1 { font-size: var(--label-1); }
+
+.label-2 { font-size: var(--label-2); }
+
 /* 
 ================
     HEADER 
@@ -381,3 +429,33 @@ REUSED STYLE
   inset: 0;
   box-shadow: none;
 }
+
+/* 
+================================
+  CURRENT WEATHER SECTION / MAIN
+================================
+*/
+
+main{
+  height: calc(100vh - 80px);
+  height: calc(100svh - 80px);
+  overflow: hidden;
+}
+
+article.container { 
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0 , 1fr);
+  gap: 20px;
+  height: 100%;
+  overflow-y: auto; /* For firefox */
+  overflow-y: overlay;
+}
+
+article.container::-webkit-scrollbar-thumb { background-color: transparent; }
+
+
+article.container:is(:hover, :focus-within)::-webkit-scrollbar-thumb { background-color: var(--white-alpha-8); }
+
+
+
