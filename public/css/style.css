@@ -666,3 +666,80 @@ FOOTER
 =============================================
 */
 
+.footer,
+.footer .body-3:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  color: var(--on-surface-variant);
+  text-align: center;
+  gap: 12px 24px;
+  margin-block-start: 28px;
+  display: none;
+}
+
+.fade-in .footer { display: flex; } 
+
+.footer .body-3:last-child { gap: 6px; }
+
+/* 
+=============================================
+LOADING 
+=============================================
+*/
+
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background);
+  place-items: center;
+  z-index: 1;
+  display: none;
+}
+
+.loading::before {
+  content: ""; 
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--on-background);
+  border-block-start-color: transparent;
+  border-radius: var(--radius-circle);
+  animation: loading 500ms linear infinite;
+}
+
+
+/* 
+=============================================
+404 ERROR SECTION
+=============================================
+*/
+
+.error-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100svh; /* for mobile browser */ 
+  background-color: var(--background);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  z-index: 8;
+}
+
+.error-content .btn-primary { margin-block-start: 20px; }
+
+/* 
+=============================================
+Media Queries
+=============================================
+*/
