@@ -583,9 +583,9 @@ article.container::before {
 
 .highlight-card .lable-1 { color: var(--on-surface-variant); }
 
-.highlight-card.one .card-item{
+/* .highlight-card.one .card-item{
   margin-block-start: 8px;
-}
+} */
 
 .badge {
   position: absolute;
@@ -814,5 +814,17 @@ responsive for larger that 768px screen
     gap: 24px;
   }
 
+  .content-left {
+    position: sticky;
+    top: 0;
+  }
+
+  .section:not(:last-child) {margin-block: 20px; }
+
+  .forecast-card .card-item:not(:last-child) {
+    margin-block-end: 16px;
+  }
+
+  .highlight-list { grid-template-columns: 1fr 1fr; }
 
 }
