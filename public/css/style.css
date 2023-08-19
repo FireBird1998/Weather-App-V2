@@ -542,14 +542,14 @@ article.container::before {
 /* HEIGHLIGHTS AND HOURLY PART */
 
 
-.highlights .m-icon { font-size: 3.2rem; }
+.highlights .m-icon { font-size: 3.2rem; z-index: 3;}
 
-.highlights-list { 
+.highlight-list { 
   display: grid;
   gap: 20px;
 }
 
-.highlights-list .title-3 {
+.highlight-list .title-3 {
   color: var(--on-surface-variant);
   margin-block-end: 20px;
 }
@@ -583,9 +583,6 @@ article.container::before {
 
 .highlight-card .lable-1 { color: var(--on-surface-variant); }
 
-/* .highlight-card.one .card-item{
-  margin-block-start: 8px;
-} */
 
 .badge {
   position: absolute;
@@ -635,9 +632,7 @@ article.container::before {
   color: var(--on-surface-variant);
 }
 
-.highlight-card.card-sm {
-  margin-block-end: 16px;
-}
+
 
 /* TODAY FORCAST */
 
@@ -825,6 +820,10 @@ responsive for larger that 768px screen
     margin-block-end: 16px;
   }
 
-  .highlight-list { grid-template-columns: 1fr 1fr; }
+  .highlight-list { 
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+  }
+
 
 }
