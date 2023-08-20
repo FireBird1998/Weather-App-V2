@@ -820,10 +820,30 @@ responsive for larger that 768px screen
     margin-block-end: 16px;
   }
 
+  .highlights { margin-top: 20px; }
+  
   .highlight-list { 
-    display: grid;
     grid-template-columns: 1fr 1fr; 
   }
 
+  .highlight-card:nth-child(-n+2){
+    grid-column: span 2;
+    height: 160px;
+  }
+
+  .highlight-card:nth-child(n+3){ height: 120px; } 
+
+  .highlights .m-icon { font-size: 3.6rem; }
+
+  .highlight-card.one .card-item{
+    width: 25%;
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+  .slider-container {
+    margin-inline: 0 -24px;
+    border-bottom-left-radius: var(--radius-16);
+    border-top-left-radius: var(--radius-16);
+  }
 
 }
