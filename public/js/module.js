@@ -113,3 +113,11 @@ export const aqiText = {
         message: "Health alert: everyone may experience more serious health effects.",
     },
 }
+
+/**
+ This code exports a constant object named aqiText that contains several properties, each of which is an object representing a different level of air quality. The properties are indexed by numbers from 1 to 5, with 1 representing the best air quality and 5 representing the worst. Each of these objects has two properties: level and message.
+
+    level: This property contains a string that describes the level of air quality. The levels, in order from best to worst, are “Good”, “Fair”, “Moderate”, “Poor”, and “Very Poor”.
+    message: This property contains a string that provides more information about the air quality level and its potential health effects.
+    This object can be used to display user-friendly information about air quality based on an air quality index (AQI) value. For example, if the AQI value is 1, the corresponding level would be “Good” and the message would be “Air quality is considered satisfactory, and air pollution poses little or no risk.”
+ */
