@@ -47,4 +47,21 @@ export const url = {
   }
 }
 
+/**
+  This code exports a constant object named url that contains several methods for generating URLs for the OpenWeatherMap API. The methods are as follows:
+ 
   
+ * currentWeather(lat, lon): This method takes in the latitude and longitude of a location and returns the URL for the current weather data of that location in metric units.
+ * 
+ * forecast(lat, lon): This method takes in the latitude and longitude of a location and returns the URL for the 5-day forecast data of that location in metric units.
+ * 
+ * airPollution(lat, lon): This method takes in the latitude and longitude of a location and returns the URL for the air pollution data of that location.
+ * 
+ * reverseGeo(lat, lon): This method takes in the latitude and longitude of a location and returns the URL for reverse geocoding that location. It returns up to 5 results.
+ * 
+ * geo(query): This method takes in a search query string (e.g., “Kolkata”, “Delhi”) and returns the URL for direct geocoding that query. It returns up to 5 results.
+
+
+Each of these methods generates a URL by inserting the provided parameters into a template string. The URLs are for different endpoints of the OpenWeatherMap API, which can be used to retrieve weather, air pollution, and geocoding data.
+ */
+
