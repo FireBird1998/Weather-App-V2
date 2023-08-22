@@ -47,8 +47,8 @@ export const url = {
   }
 }
 
-/**
-  This code exports a constant object named url that contains several methods for generating URLs for the OpenWeatherMap API. The methods are as follows:
+/**This code exports a constant object named url that contains several methods for generating URLs for the OpenWeatherMap API. The methods are as follows:
+  
  
   
  * currentWeather(lat, lon): This method takes in the latitude and longitude of a location and returns the URL for the current weather data of that location in metric units.

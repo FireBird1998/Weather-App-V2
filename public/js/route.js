@@ -9,7 +9,7 @@
     The code imports two functions, updateWeather and error404, from the ./api.js module. It also defines a constant defaultLocation which specifies    the default location to use if the user’s current location cannot be determined.
  */
 
-import {updateWeather, error404} from './api.js';
+import {updateWeather, error404} from './main.js';
 const defaultLocation = "#/weather?lat=23.7644025&lon=90.389015";
 
 
@@ -39,7 +39,11 @@ const currentLocation =  function () {
  * @param {string} query Search query string     
  */
 
-const searchedLocation = query => updateWeather(query.split("&"));
+const searchedLocation = query => {
+    updateWeather(...query.split("&"))
+    // console.log(query.split("&"))
+};
+
 //updating updateWeather(lat, lon)
 
 
@@ -64,7 +68,7 @@ const routers = new Map([
 const checkHash = function () {
     const requestURL = window.location.hash.slice(1);
 
-    const[router, query] = requestURL.includes ? requestURL.split("?") : [requestURL];
+    const [router, query] = requestURL.includes ? requestURL.split("?") : [requestURL];
 
     routers.get(router) ? routers.get(router)(query) : error404();
 }
@@ -72,8 +76,8 @@ const checkHash = function () {
 window.addEventListener('hashchange', checkHash);
 
 window.addEventListener('load', function () {
-    if(!this.window.hash) {
-        this.window.hash = "#/current-location";
+    if(!window.location.hash) {
+        window.location.hash = "#/current-location";
     } else {
         checkHash();
     }
