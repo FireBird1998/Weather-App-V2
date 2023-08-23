@@ -40,7 +40,7 @@ const currentLocation =  function () {
  */
 
 const searchedLocation = query => {
-    updateWeather(...query.split("&"))
+    updateWeather(...query.split("&"));
     // console.log(query.split("&"))
 };
 
