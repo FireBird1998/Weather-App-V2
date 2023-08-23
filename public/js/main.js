@@ -167,9 +167,9 @@ const errorContent = document.querySelector("[data-error-content]");
  */
 
 export const updateWeather = function (lat, lon) {
-    //loading.style.display = "grid";
-    //container.style.overflow = "hidden";
-    //container.classList.remove("fade-in");
+    loading.style.display = "grid";
+    container.style.overflow = "hidden";
+    container.classList.remove("fade-in");
     errorContent.style.display = "none";
 
     const currentweatherSection = document.querySelector("[data-current-weather]");
@@ -362,13 +362,130 @@ export const updateWeather = function (lat, lon) {
 
             highlightsSection.appendChild(card);
 
+
+
         });
+
+        /**
+         * 24Hours Forcust Section
+         */
+
+        fetchData(url.forecast(lat, lon), function (forecast){
+            const {
+                list: forecastList,
+                city: { timezone }
+            } = forecast;
+
+            hourlySection.innerHTML = `
+                <h2 class="title-2">Today at</h2>
+                <div class="slider-container">
+                    <ul class="slider-list" data-temp></ul>
+
+                    <ul class="slider-list" data-wind></ul>
+
+                </div>
+            `;
+
+            for(const [index, data] of forecastList.entries()){
+                if(index > 7) break;
+
+                const { 
+                    dt : dataTimeUnix,
+                    main: { temp },
+                    weather,
+                    wind: { deg: windDirection, speed: windSpeed }
+                } = data;
+                const[{icon, description}] = weather;
+
+                const tempLi = document.createElement('li');
+                tempLi.classList.add('slider-item');
+
+                tempLi.innerHTML = `
+                <div class="card card-sm slider-card">
+                    <p class="body-3">${module.getHours(dataTimeUnix, timezone)}</p>
+
+                    <img src="public/images/weather_icons/${icon}.png" alt="${description}" class="weather-icon" width="48" height="48" loading="lazy" title="${description}">
+
+                    <p class="body-3">${parseInt(temp)}&deg;<sub>C</sub></p>
+                </div>
+                `;
+
+                hourlySection.querySelector('[data-temp]').appendChild(tempLi);
+
+                const windLi = document.createElement('li');
+                windLi.classList.add('slider-item');
+
+                windLi.innerHTML = `
+                <div class="card card-sm slider-card">
+                    <p class="body-3">${module.getHours(dataTimeUnix, timezone)}</p>
+
+                    <img src="public/images/weather_icons/direction.png" alt="" class="weather-icon" width="48" height="48" loading="lazy" style="transform: rotate(${windDirection - 180}deg)">
+
+                    <p class="body-3">${parseInt(module.mps_to_kmh(windSpeed))} km/h</p>
+
+                </div>
+                `;
+                hourlySection.querySelector('[data-wind]').appendChild(windLi);
+            }
+
+            /**
+             * 5Days ForeCast Section
+             */
+
+            forecastSection.innerHTML= `
+                <h2 class="title-2" id="forecast-label">5 Days Forecast</h2>
+            
+                <div class="card card-lg forecast-card">
+                    <ul data-forecast-list></ul>
+                </div>
+            `;
+
+            for(let i = 7, len = forecastList.length; i < len; i += 8 ){
+                const{
+                    main: { temp_max },
+                    weather, 
+                    dt_txt
+
+                } = forecastList[i];
+
+                const[{icon, description}] = weather;
+
+                const date = new Date(dt_txt);
+
+                const li = document.createElement('li');
+                li.classList.add('card-item');
+
+                li.innerHTML = `
+                <div class="icon-wrapper">
+                    <img src="public/images/weather_icons/${icon}.png" width="36" height="36" alt="${description}" class="weather-icon">
+                    <span class="span">
+                        <p class="title-2">${parseInt(temp_max)}&deg;<sub>C</sub></p>
+                    </span>
+                </div>
+
+                <p class="label-1">${date.getDate()} ${module.monthNames[date.getMonth()]}</p>
+
+
+                <p class="label-1">${module.weekDayNames[date.getUTCDay()]}</p>
+                `;
+
+                forecastSection.querySelector("[data-forecast-list]").appendChild(li);
+
+            }
+
+            loading.style.display = "none";
+            container.style.overflow = "overlay";
+            container.classList.add("fade-in");
+
+        });
+
+
     });
 
 
 }
 
 
-export const error404 = function () { }
+export const error404 = () => errorContent.style.display = "flex";
 
 
